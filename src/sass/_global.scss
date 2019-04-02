@@ -1,0 +1,97 @@
+$colour-bg: #1f1f1f;
+$colour-bg-light: #ecf1ee;
+$colour-primary: #da0d5b;
+
+$colour-font-basic: #cecece;
+$colour-font-primary: #3FFF8E;
+$colour-font-secondary: #AF1160;
+$colour-font-main: #dcf0e3;
+
+
+$size-medium: "screen and (min-width: 426px)";
+$size-large: "screen and (min-width: 769px)";
+$size-wide: "screen and (min-width: 1025px)";
+
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400');
+%quicksand { font-family: 'Quicksand', sans-serif; }
+
+@import url('https://fonts.googleapis.com/css?family=Trade+Winds');
+%header { font-family: 'Trade Winds', cursive; }
+
+
+@mixin display-flex() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+
+// Reusables
+.tile {
+    box-shadow: 3px 3px 10px hsla(0, 0%, 0%, 0.3);
+}
+
+
+// Extensions
+%stickr-header {
+    position: relative;
+    @extend %header;
+    width: max-content;
+    width: -moz-max-content;
+    color: white;
+    
+    &[data-text] {
+        margin-right: 10px;
+    }
+    
+
+    &::after {
+        position: absolute;
+        top: -2px;
+        left: 5px;
+        content: attr(data-text);
+        color: #c20071;
+        mix-blend-mode: difference;
+    }
+}
+
+%stickr-craze {
+    position: relative;
+    border-width: 1px;
+    color: white;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: '';
+        border: solid 1px green;
+        mix-blend-mode: exclusion;
+        transform: scale(1.2) rotateZ(-7deg);
+        pointer-events: none;
+    }
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: '';
+        border: solid 1px #c20071;
+        mix-blend-mode: difference;
+        transform: scale(1.2) rotateZ(7deg);
+        pointer-events: none;
+    }
+}
+
+%after-arrow {
+    &::after {
+        content: '\276f';
+        margin-left: 5px;
+    }
+}

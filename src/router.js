@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import MainComponent from './views/Main'
+import CollectionComponent from './views/Collection'
 
 Vue.use(Router)
 
@@ -9,7 +11,27 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: MainComponent
+    },
+    {
+      path: '/user/:id',
+      name: 'user',
+      component: CollectionComponent
+    },
+    {
+      path: '/collection/:id',
+      name: 'collection',
+      component: CollectionComponent
+    },
+    {
+      path: '/collection/edit/:id',
+      name: 'collection-edit',
+      component: CollectionComponent
+    },
+    {
+      path: '/stickr/:coll/:id',
+      name: 'stickr',
+      component: CollectionComponent
     },
     {
       path: '/about',

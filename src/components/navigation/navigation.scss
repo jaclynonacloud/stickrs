@@ -1,0 +1,208 @@
+@import './src/sass/main';
+
+.navigation {
+    position: relative;
+    @include display-flex();
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: mix($colour-bg, black, 30);
+    padding: 10px;
+    color: $colour-font-main;
+    box-sizing: border-box;
+    
+    @media #{$size-large} {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 5px;
+    }
+
+    .brand {
+        @include display-flex();
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        @media #{$size-large} {
+            flex-flow: row;
+        }
+
+        &__image {
+            display: none;
+            max-height: 80px;
+            cursor: pointer;
+
+            @media #{$size-large} {
+                display: block;
+                max-height: 60px;
+            }
+        }
+
+        &__title {
+            @include display-flex();
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+
+            @media #{$size-large} {
+                font-size: 2em;
+            }
+        }
+
+        &__slogan {
+            @media #{$size-large} { display: none; }
+            @media #{$size-wide} { display: block; }
+        }
+    }
+
+
+    .public {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 10px;
+        margin-top: 10px;
+        box-sizing: border-box;
+
+        @media #{$size-medium} {
+            button.styled {
+                min-width: 300px;
+                width: max-content;
+                width: -moz-max-content;
+                margin: 0 auto;
+            }
+        }
+
+        @media #{$size-large} {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 350px;
+            margin: 0 auto;
+
+            button.styled {
+                min-width: unset;
+                width: 100%;
+            }
+        }
+    }
+
+    .account {
+        @include display-flex();
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        &__login {
+            margin-right: 5px;
+        }
+
+        &__icon {
+            &__image {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+    }
+
+    .account-actions {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: white;
+        color: grey;
+        font-size: 1.2em;
+        box-sizing: border-box;
+        z-index: 99;
+
+        @media #{$size-large} {
+            left: unset;
+            right: 15px;
+            border-radius: 5px;
+
+            .action:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .action {
+            position: relative;
+            @include display-flex();
+            justify-content: center;
+            padding: 10px 0;
+            border-bottom: solid 1px #e4e4e4;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &__title {
+            }
+
+            &__result {
+                padding-left: 5px;
+                color: $colour-font-basic;
+
+                &.warn {
+                    color: $colour-font-secondary;
+                }
+            }
+
+            &:first-child {
+                border-radius: 5px 5px 0 0;
+            }
+
+            &:last-child {
+                position: relative;
+                border-bottom: none;
+                border-radius: 0 0 5px 5px;
+                height: 100vh;
+                
+                @media #{$size-large} {
+                    height: unset;
+                }
+            }
+
+            &:hover {
+                background: $colour-bg-light;
+                color: mix($colour-font-primary, black, 70);
+
+                .action__result {
+                    color: mix($colour-font-basic, black, 70);
+
+                    &.warn {
+                        color: $colour-font-secondary;
+                    }
+                }
+            }
+
+            @media #{$size-large} {
+                padding: 10px 25px;
+            }
+        }
+
+
+        // Triangle
+        &::after {
+            position: absolute;
+            content: '';
+            top: -10px;
+            right: unset;
+            background: white;
+            width: 20px;
+            height: 10px;
+            -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+
+            @media #{$size-large} {
+                right: 10px;
+            }
+        }
+    }
+
+}

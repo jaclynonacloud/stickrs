@@ -1,0 +1,64 @@
+<section class="stickr-main">
+
+  <!-- Featured Container -->
+  <div class="featured-container">
+    <!-- Featured -->
+    <div class="featured tile">
+      <div class="featured__image">
+        <img class="main" src="../../assets/tests/saint-edit.png" alt="featured">
+        <!-- <img class="set" src="#" alt="set"> -->
+      </div>
+      <div class="featured__content">
+        <router-link :to="{ name:'collection', params: { id: 'msc' }}" tag="h2" class="title">MSC Saint Stickr!</router-link>
+        <div class="description">Get this new stickr while it lasts!</div>
+        <div class="timer">Available for <span class="time">0:30:29</span></div>
+      </div>
+    </div>
+    <!-- /Featured -->
+
+    <!-- Stickrs -->
+    <div class="collection-group">
+      <div class="collection-group__head">
+        <h1 class="title tile" data-text="Stickrs">Stickrs</h1>
+        <button class="browse styled">Browse</button>
+      </div>
+      <div class="collection">
+
+        <div class="collection__item" v-for="i in 15" :key="i">
+          <div class="collection__item__image">
+            <img src="../../assets/tests/saint-edit.png" alt="stickr">
+          </div>
+          <div class="collection__item__content">
+            <div class="title">Stickr</div>
+            <div class="set">Collection Name</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- /Stickrs -->
+    <!-- Collections -->
+    <div class="collection-group set">
+        <div class="collection-group__head">
+          <h1 class="title tile" data-text="Collections">Collections</h1>
+          <button class="browse styled">Browse</button>
+        </div>
+      <div class="collection">
+
+        <router-link class="collection__item" v-for="i in 10" :key="i" :to="{ name:'collection', params:{ id:'msc' } }" tag="div">
+          <div class="collection__item__image">
+            <img src="../../assets/tests/msc-banner.png" alt="collection">
+          </div>
+          <div class="collection__item__content">
+            <div class="title">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+            <div class="set">by <router-link :to="{ name:'user', params:{ id:'jaclynonacloud' } }" v-html="'jaclynonacloud'"></router-link></div>
+          </div>
+        </router-link>
+      </div>
+
+    </div>
+    <!-- /Collections -->
+  </div>
+  <!-- /Featured Container -->
+
+</section>

@@ -1,0 +1,112 @@
+<section class="collection">
+  <!-- Banner -->
+  <div class="banner">
+    <img src="../../assets/tests/msc-banner.png" alt="banner">
+  </div>
+  <h1 class="title" data-text="More Slugcats Mod">More Slugcats Mod</h1>
+  <!-- /Banner -->
+
+  <!-- Collection Details -->
+  <div class="stats__group">
+      <div class="stats__group__container tile">
+        <div class="stat">Owned by: <router-link :to="{ name:'user', params: { id:'jaclynonacloud' } }" class="stat__value" v-html="'jaclynonacloud'"></router-link></div>
+        <div class="stat">Created: <span class="stat__value" v-html="'January 1, 1999'"></span></div>
+        <div class="stat">Moderators: <span class="stat__value" v-html="'3'"></span></div>
+      </div>
+    </div>
+  <!-- /Collection Details -->
+
+  <!-- Container -->
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats">
+      <!-- Controls -->
+      <div class="stats__group" v-show="true">
+        <h2>Controls</h2>
+        <div class="stats__group__container tile">
+          <router-link :to="{ name:'collection-edit', params: { id:'msc' } }" tag="a">Edit</router-link>
+          <router-link :to="{ name:'collection-delete', params: { id:'msc' } }" tag="a">Delete</router-link>
+          <div class="stat">Created: <span class="stat__value" v-html="'January 1, 1999'"></span></div>
+          <div class="stat">Moderators: <span class="stat__value" v-html="'3'"></span></div>
+        </div>
+      </div>
+      <!-- /Controls -->
+      <!-- Includes -->
+      <div class="stats__group">
+        <h2>Collection Includes</h2>
+        <div class="stats__group__container tile">
+          <div class="stat">Normal Stickers: <span class="stat__value" v-html="'30'"></span></div>
+          <div class="stat">Rare Stickers: <span class="stat__value" v-html="'3'"></span></div>
+          <div class="stat">Exclusive Stickers: <span class="stat__value" v-html="'3'"></span></div>
+        </div>
+      </div>
+      <!-- /Includes -->
+      <!-- Global -->
+      <div class="stats__group">
+        <h2>Global Statistics</h2>
+        <div class="stats__group__container tile">
+          <div class="stat">Completed Collection: <span class="stat__value" v-html="'22.5%'"></span></div>
+          <div class="stat">Collected By: <span class="stat__value" v-html="'2000'"></span> Users</div>
+        </div>
+      </div>
+      <!-- /Global -->
+    </div>
+    <!-- /Stats -->
+
+    <!-- Details -->
+    <div class="details">
+      <!-- Previews -->
+      <div class="previews">
+        <!-- Exclusives -->
+        <div class="group">
+          <h2 class="group__title">Exclusive Stickrs</h2>
+          <h3 class="group__amount">0/3</h3>
+          <div class="group__stickrs">
+            <!-- Stickr -->
+            <router-link :to="{ name:'stickr', params: { coll:'msc', id:'saint' } }" tag="a" class="stickr" v-for="i in 5" :key="i">
+              <div class="stickr__image silhouette"><img src="../../assets/tests/saint-edit.png" alt="stickr"></div>
+              <h3 class="stickr__title">Stickr Name</h3>
+              <div class="stickr__availability">
+                  <div class="available__date">Available Until: January 2</div>
+                  <div class="available__time">10:28pm AST</div>
+              </div>
+              <button>Collect</button>
+            </router-link>
+          </div>
+        </div>
+        <!-- /Exclusives -->
+        <!-- Rares -->
+        <div class="group">
+          <h2 class="group__title">Rare Stickrs</h2>
+          <h3 class="group__amount">0/3</h3>
+          <div class="group__stickrs">
+            <!-- Stickr -->
+            <router-link :to="{ name:'stickr', params: { coll:'msc', id:'saint' } }" tag="a" class="stickr" v-for="i in 5" :key="i">
+              <div class="stickr__image silhouette"><img src="../../assets/tests/saint-edit.png" alt="stickr"></div>
+              <h3 class="stickr__title">Stickr Name</h3>
+              <button>Collect</button>
+            </router-link>
+          </div>
+        </div>
+        <!-- /Rares -->
+        <!-- Alls -->
+        <div class="group other">
+          <h2 class="group__title">Stickrs</h2>
+          <h3 class="group__amount">0/99</h3>
+          <div class="group__stickrs">
+            <!-- Stickr -->
+            <router-link :to="{ name:'stickr', params: { coll:'msc', id:'saint' } }" tag="a" class="stickr" v-for="i in 5" :key="i">
+              <div class="stickr__image silhouette"><img src="../../assets/tests/saint-edit.png" alt="stickr"></div>
+              <h3 class="stickr__title">Stickr Name</h3>
+              <button>Collect</button>
+            </router-link>
+          </div>
+        </div>
+        <!-- /Alls -->
+      </div>
+      <!-- /Previews -->
+    </div>
+    <!-- /Details -->
+    </div>
+  <!-- /Container -->
+</section>

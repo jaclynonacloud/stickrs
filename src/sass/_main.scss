@@ -1,0 +1,141 @@
+// Load all partials
+@import 'global';
+@import 'helpers';
+
+
+
+// Clear
+html,
+body {
+    background: $colour-bg;
+    padding: 0;
+    margin: 0;
+    @extend %quicksand;
+}
+
+a {
+    color: $colour-font-secondary;
+    text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    position: relative;
+    @extend %header;
+    width: max-content;
+    width: -moz-max-content;
+    
+    &[data-text] {
+        margin-right: 10px;
+    }
+    
+
+    &::after {
+        position: absolute;
+        top: -2px;
+        left: 5px;
+        content: attr(data-text);
+        color: #c20071;
+        mix-blend-mode: difference;
+    }
+}
+
+h2 {
+    color: $colour-font-primary;
+}
+
+h3 {
+    color: $colour-font-secondary;
+}
+
+
+
+button {
+    position: relative;
+    background: transparent;
+    padding: 5px;
+    color: $colour-font-secondary;
+    font-size: 1.2em;
+    border: solid 2px $colour-font-secondary;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: ease all 0.6s;
+    user-select: none;
+    outline: none;
+
+    &.full {
+        width: 100%;
+    }
+
+    &:hover {
+        color: white;
+    }
+
+    &.styled {
+        border-width: 1px;
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            content: '';
+            border: solid 1px $colour-font-secondary;
+            transform: scale(1) rotateZ(0);
+            pointer-events: none;
+            transition: ease all 0.3s;
+        }
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            content: '';
+            border: solid 1px $colour-font-secondary;
+            transform: scale(1) rotateZ(0);
+            pointer-events: none;
+            transition: ease all 0.5s;
+        }
+
+        &:hover {
+            color: white;
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                content: '';
+                border: solid 1px green;
+                mix-blend-mode: exclusion;
+                transform: scale(1.2) rotateZ(-7deg);
+                pointer-events: none;
+            }
+            &::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                content: '';
+                border: solid 1px #c20071;
+                mix-blend-mode: difference;
+                transform: scale(1.2) rotateZ(7deg);
+                pointer-events: none;
+            }
+        }
+
+    }
+}
