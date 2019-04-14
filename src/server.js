@@ -29,13 +29,20 @@ app.use('/api/users', require('./db/user.route'))
 //image posting { image, directory, name }
 app.post('/api/upload', (req, res) => {
     //get the image data
-    const { image, directory, name } = req.body
+    let { image, directory, name } = req.body
+    image = image.replace(/^data:image\/png;base64,/, "")
+
     //make the directory if it doesn't exist
     if(!fs.existsSync(path.resolve(__dirname, directory)))
         fs.mkdirSync(path.resolve(__dirname, directory))
     //save to local directory
-    fs.copyFile(image, path.resolve(__dirname, directory, name), err => {
+    // fs.copyFile(image, path.resolve(__dirname, directory, name), err => {
+    //     if(err) res.status(400).send("Could not upload to database!\n" + err)
+    //     else res.status(200).send("Added successfully to " + path.resolve(__dirname, directory, name))
+    // })
+    fs.writeFile(path.resolve(__dirname, directory, name), image, 'base64', err => {
         if(err) res.status(400).send("Could not upload to database!\n" + err)
+        else res.status(200).send("Added successfully to " + path.resolve(__dirname, directory, name))
     })
 })
 

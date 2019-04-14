@@ -240,6 +240,15 @@ h1.title {
                 width: inherit;
                 height: auto;
             }
+
+            &.collection {
+                max-height: 96px;
+                img {
+                    width: auto;
+                    max-height: inherit;
+                }
+            }
+
         }
     }
 }

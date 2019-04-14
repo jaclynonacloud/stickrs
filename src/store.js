@@ -50,8 +50,8 @@ export default new Vuex.Store({
         const result = await axios.post(`${URL}/collections/add`, body)
         if(result.status == 200) {
           //save the header image if there was one
-          if(payload.headerImage && payload.headerImage != null) {
-            const uploadResult = await axios.post(`/${URL}/api/upload`, { image: payload.headerImage, directory: `assets/uploads/collections/${payload.slug}/`, name: 'banner.png' })
+          if(payload.bannerImage && payload.bannerImage != null) {
+            const uploadResult = await axios.post(`${URL}/upload`, { image: payload.bannerImage, directory: `assets/uploads/collections/${payload.slug}/`, name: 'banner.png' })
           }
   
           //add collection to collections array

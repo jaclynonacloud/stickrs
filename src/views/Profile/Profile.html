@@ -50,7 +50,7 @@
       <div class="stats__group__container tile cards">
         <router-link :to="{ name:'collection', params:{ slug:coll.slug } }" class="card tile" v-for="(coll, i) in myCollections" :key="i">
           <div class="card__title" v-html="coll.name"></div>
-          <div class="card__image">
+          <div class="card__image collection">
             <img :src="getCollectionURL(coll.slug)" alt="collection image">
           </div>
         </router-link>
