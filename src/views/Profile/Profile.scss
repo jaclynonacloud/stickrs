@@ -1,0 +1,161 @@
+@import '../../sass/main';
+
+.profile {
+    .pack-top {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+
+        @media #{$size-large} {
+            grid-template-columns: 450px 1fr;
+
+            .banner {
+                img {
+                    max-height: unset;
+                }
+            }
+        }
+
+        .title-holder {
+            @include display-flex();
+            justify-content: center;
+            grid-column: span 2;
+        }
+
+        .stats__group {
+            &__holder {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 10px;
+                margin: 35px 0;
+
+                @media #{$size-medium} {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                @media #{$size-large} {
+                    grid-template-columns: repeat(5, 1fr);
+                }
+
+                .stickr {
+                    width: 100%;
+                    cursor: pointer;
+
+                    img {
+                        object-fit: contain;
+                        width: inherit;
+                        transform: rotate(15deg);
+
+                    }                
+                    &:nth-child(odd) {
+                        img { transform: rotate(-17deg); }
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
+                        z-index: 2;
+                    }
+                }
+            }
+        }
+    }
+
+    .cards {
+        @media #{$size-large} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    .group {
+        &.other {
+            grid-template-columns: 1fr;
+        }
+
+        &__collections {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 5px;
+
+            .collection {
+                display: grid;
+                grid-template-columns: 1fr;
+                align-items: flex-start;
+                padding: 5px;
+                box-sizing: border-box;
+
+                @media #{$size-medium} {
+                    grid-template-columns: 250px 1fr;
+                }
+                @media #{$size-wide} {
+                    grid-template-columns: 350px 1fr;
+                }
+
+                .collection-tile {
+                    cursor: pointer;
+                    &:hover {
+                        transform: scale(1.1);
+                        z-index: 2;
+                    }
+                }
+                
+                &__details {
+                    background: $colour-bg-light;
+                    width: 100%;
+                    padding: 5px;
+                    box-sizing: border-box;
+
+                    &__image {
+                        width: inherit;
+
+                        img {
+                            width: inherit;
+                        }
+                    }
+
+                    &__title {
+                        @extend %after-arrow;
+                    }
+                }
+
+
+                &__stickrs {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-gap: 5px;
+
+                    @media #{$size-large} {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                    @media #{$size-wide} {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+
+                    .stickr {
+                        padding: 5px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+
+                        &__image {
+                            max-height: 150px;
+                            img {
+                                object-fit: scale-down;
+                                width: auto;
+                                max-height: inherit;
+                            }
+                        }
+
+                        &__title {
+                            padding-top: 5px;
+                            @extend %after-arrow;
+                        }
+                        
+                    }
+                }
+
+            }
+
+        }
+    }
+}

@@ -30,8 +30,55 @@ $size-wide: "screen and (min-width: 1025px)";
 
 
 // Reusables
+.content-area {
+    @media #{$size-medium} {
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
+
 .tile {
+    background: white;
+    padding: 10px;
     box-shadow: 3px 3px 10px hsla(0, 0%, 0%, 0.3);
+    box-sizing: border-box;
+    border-radius: 0 5px 0 10px;
+}
+
+.breadcrumbs {
+    @include display-flex();
+    flex-flow:  row wrap;
+    align-items: center;
+    background: white;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+
+    a {
+        cursor: pointer;
+    }
+
+    &__active {
+        color: unset;
+        font-weight: 700;
+
+        &::before {
+            content: '\276f';
+            margin: 0 5px;
+            color: $colour-font-secondary;
+        }
+    }
+}
+
+.controls-alt {
+    @media #{$size-large} {
+        display: none;
+    }
+}
+
+
+// --image fx
+.silhouette {
+    img { filter: grayscale(100%) brightness(5%) contrast(60%);  }
 }
 
 
@@ -86,6 +133,34 @@ $size-wide: "screen and (min-width: 1025px)";
         mix-blend-mode: difference;
         transform: scale(1.2) rotateZ(7deg);
         pointer-events: none;
+    }
+}
+
+//used to style action buttons
+%stickr-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include display-flex();
+    flex-flow: row wrap;
+    padding: 25px;
+    box-sizing: border-box;
+
+    .button {
+        @include display-flex();
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        padding: 3px;
+        margin-left: 10px;
+        color: $colour-font-primary;
+        border: solid 1px $colour-font-primary;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }
 

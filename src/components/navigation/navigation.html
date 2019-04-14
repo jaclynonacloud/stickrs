@@ -9,23 +9,26 @@
     <button class="styled full">Vote</button>
   </div>
   <div class="account">
-      <div class="account__login">
+      <div class="account__login" v-if="!user">
         <button>Login</button>
       </div>
-      <div class="account__icon"><img class="account__icon__image" src="" @click="toggleMenu()"></div>
+      <div class="logged-in" v-else>
+        <div class="logged-in__name" v-html="user.name"></div>
+        <div class="logged-in__icon"><img class="logged-in__icon__image" :src="getProfileURL(user.slug)" @click="toggleMenu()"></div>
+      </div>
       
     </div>
-  <div class="account-actions" v-if="menuIsOpen">
-    <div class="action">
+  <div class="account-actions" v-if="menuIsOpen" @click="menuIsOpen = false">
+    <router-link :to="{ name:'profile', params:{ slug:'jaclynonacloud' } }" tag="div" class="action">
       <div class="action__title">Profile</div>
       <div class="action__result"></div>
-    </div>
+    </router-link>
     <div class="action">
       <div class="action__title">Collections</div>
       <div class="action__result"></div>
     </div>
     <div class="action">
-      <div class="action__title">Inbox</div>
+      <div class="action__title">Events</div>
       <div class="action__result">0</div>
     </div>
     <div class="action">

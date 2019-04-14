@@ -1,0 +1,35 @@
+@import './src/sass/main';
+
+.pack {
+
+    .pack-top {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+
+        @media #{$size-large} {
+            grid-template-columns: 450px 1fr;
+
+            .banner {
+                img {
+                    max-height: unset;
+                }
+            }
+        }
+
+        .title-holder {
+            @include display-flex();
+            justify-content: center;
+            grid-column: span 2;
+        }
+    }
+
+    .cards {
+        @media #{$size-large} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+}

@@ -57,6 +57,10 @@
                 box-sizing: border-box;
                 cursor: pointer;
 
+                &:hover {
+                    transform: scale(1.1);
+                }
+
                 @extend %header;
                 @extend %after-arrow;
             }
@@ -125,7 +129,7 @@
     .collection {
         @include display-flex();
         flex-flow: row wrap;
-        justify-content: center;
+        justify-content: flex-start;
         margin: 10px;
 
         &__item {
@@ -134,6 +138,11 @@
             align-items: center;
             min-width: 100px;
             margin: 4px;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+            }
 
             &__image {
                 @include display-flex();

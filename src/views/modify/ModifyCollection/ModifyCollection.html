@@ -1,0 +1,31 @@
+<section class="modify-collection">
+  <h1 class="main-title" data-text="New Collection">New Collection</h1>
+  <!-- Banner -->
+  <div class="banner tile" @dragenter.self.stop.prevent="onDragBannerEnter" @dragleave.self.stop.prevent="onDragBannerLeave" @drop.self.stop.prevent="onDropBanner">
+    <label class="banner__image" :style="{ pointerEvents : isDraggingBanner ? 'none' : 'all' }">
+      <img src="../../../assets/ui/add.png" alt="add image">
+      <input type="file" name="bannerImage" accept="image/*" @change.self="onUploadBanner">
+    </label>
+    <h2 class="banner__title">Add Banner</h2>
+    <div class="banner__description">Best size: 1600 x 500</div>
+    <div class="banner__loaded-image" v-if="bannerSrc != ''">
+      <img :src="bannerSrc" alt="banner">
+    </div>
+    <div class="uploading" v-if="isDraggingBanner">
+      <h3>Drag & Drop Image Here</h3>
+    </div>
+  </div>
+  <!-- /Banner -->
+  <!-- Details -->
+  <div class="details tile">
+    <h3 class="details__title">Details</h3>
+    <div class="detail">Slug</div><input type="text" class="value" v-model="slug" placeholder="collectionName" maxlength="60">
+    <div class="detail">Name</div><input type="text" class="value" v-model="name" placeholder="Collection Name" maxlength="30">
+    <div class="detail">Description</div><textarea class="value" v-model="description" placeholder="Add description here..." maxlength="500"></textarea>
+    <!-- <div class="detail">Unlisted</div><input type="checkbox" class="value" name="unlisted" checked> -->
+  </div>
+  <!-- /Details -->
+  <div class="submit">
+    <button type="submit" class="styled" @click.self="submitCollection">Submit</button>
+  </div>
+</section>

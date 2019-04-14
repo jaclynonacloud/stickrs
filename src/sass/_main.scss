@@ -1,6 +1,7 @@
 // Load all partials
 @import 'global';
 @import 'helpers';
+@import 'layout';
 
 
 
@@ -34,6 +35,7 @@ h1 {
     @extend %header;
     width: max-content;
     width: -moz-max-content;
+    color: white;
     
     &[data-text] {
         margin-right: 10px;
@@ -58,6 +60,27 @@ h3 {
     color: $colour-font-secondary;
 }
 
+hr {
+    border: none;
+    border-bottom: solid 1px $colour-font-basic;
+}
+
+
+input,
+textarea,
+select {
+    padding: 4px;
+    @extend %quicksand;
+}
+
+input[type=checkbox] {
+    transform: scale(1.3) rotateZ(4deg);
+}
+textarea {
+    min-height: 50px;
+    resize: vertical;
+}
+
 
 
 button {
@@ -69,7 +92,6 @@ button {
     border: solid 2px $colour-font-secondary;
     cursor: pointer;
     box-sizing: border-box;
-    transition: ease all 0.6s;
     user-select: none;
     outline: none;
 
@@ -81,6 +103,7 @@ button {
         color: white;
     }
 
+    
     &.styled {
         border-width: 1px;
 
@@ -94,7 +117,7 @@ button {
             border: solid 1px $colour-font-secondary;
             transform: scale(1) rotateZ(0);
             pointer-events: none;
-            transition: ease all 0.3s;
+            transition: step-end all 0.05s;
         }
         &::after {
             position: absolute;
@@ -106,7 +129,7 @@ button {
             border: solid 1px $colour-font-secondary;
             transform: scale(1) rotateZ(0);
             pointer-events: none;
-            transition: ease all 0.5s;
+            transition: step-end all 0.16s;
         }
 
         &:hover {

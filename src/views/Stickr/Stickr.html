@@ -1,0 +1,125 @@
+<section class="stickr content-area" v-if="stickr">
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <router-link :to="{ name:'collection', params:{ slug:stickr.slugCollection } }" v-html="getStickrCollectionName(stickr.slugCollection)" class="breadcrumbs__link"></router-link>
+    <div class="breadcrumbs__active" v-html="stickr.name" v-if="!stickr.hidden"></div>
+    <div class="breadcrumbs__active" v-else>???</div>
+  </div>
+  <!-- /Breadcrumbs -->
+  <!-- Image -->
+  <div class="stickr__image" :class="{'silhouette':stickr.hidden }">
+    <img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="image">
+  </div>
+  <!-- /Image -->
+
+  <!-- Actions -->
+  <div class="actions">
+    <div class="button fav">Fav</div>
+    <div class="button fav">Flag</div>
+  </div>
+  <!-- Actions -->
+
+  <!-- Details -->
+  <div class="stickr__details">
+    <h1 class="title" :data-text="stickr.name" v-html="stickr.name" v-if="!stickr.hidden"></h1>
+    <h1 class="title" data-text="???" v-else>???</h1>
+    <div class="details tile">
+      <h3 style="grid-column: span 2">Stickr</h3>
+      <div class="detail__title">Ownership</div>
+      <div class="detail__list">
+          <div v-for="(owner, i) in stickr.ownership" class="detail__value">
+              <a :href="owner.url" v-html="owner.name" v-if="owner.url != ''"></a>
+              <span v-html="owner.name" v-else></span>
+          </div>
+      </div>
+      <div class="detail__title">Artist</div>
+      <div class="detail__list">
+          <div v-for="(art, i) in stickr.artist" class="detail__value" >
+              <a :href="art.url" v-html="art.name" v-if="art.url != ''"></a>
+              <span class="detail__value" v-html="art.name" v-else></span>
+          </div>
+      </div>
+      <div class="detail__title">Curator</div><router-link :to="{ name:'profile', params:{ 'slug':stickr.slugCurator } }" class="detail__value" v-html="stickr.slugCurator"></router-link>
+      <div class="detail__title">Uploaded</div><div class="detail__value" v-html="createdDate"></div>
+    </div>
+    <div class="details description tile" v-html="stickr.description" v-if="!stickr.hidden"></div>
+  </div>
+  <!-- /Details -->
+
+  <!-- Availability -->
+  <!-- Freebie -->
+  <div class="stickr__details">
+    <h2 class="title">Availability</h2>
+    <div class="details tile availability">
+      <div class="details__description">
+        <b>This stickr is a freebie!</b>
+      </div>
+      <div class="detail__title">Requirements</div><div class="detail__value" v-html="'None! Just collect it with the button above.'"></div>
+    </div>
+  </div>
+  <!-- Release -->
+  <div class="stickr__details">
+    <h2 class="title">Availability</h2>
+    <div class="details tile availability">
+      <div class="details__description">
+        <b>This stickr is given out by the author or moderators.</b>
+      </div>
+      <div class="detail__title">Requirements</div><div class="detail__value" v-html="'Given as a reward for trivia.'"></div>
+    </div>
+  </div>
+  <!-- Time-Sensitive -->
+  <div class="stickr__details">
+    <h2 class="title">Availability</h2>
+    <div class="details tile availability">
+      <div class="detail__title">Next Availability</div><div class="detail__value" v-html="'Tomorrow from 1:30pm-3:30pm'"></div>
+      <!-- Weekly -->
+      <div class="detail__timetable">
+        <div class="day">
+            <div class="header">Sunday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Monday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Tuesday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Wednesday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Thursday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Friday</div>
+            <div class="avail">All Day</div>
+        </div>
+        <div class="day">
+            <div class="header">Saturday</div>
+            <div class="avail">All Day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Availability -->
+
+
+  <!-- Packs -->
+  <div class="packs">
+    <h2 class="title">Found in Packs</h2>
+    <div class="packs__group">
+      <router-link :to="{ name:'pack', params: { slug:'slug-gems' } }" class="pack tile" v-for="i in 15" :key="i">
+        <div class="pack__title">Slug Gems</div>
+        <div class="pack__image">
+          <img src="../../assets/tests/pack-icon.png" alt="pack image">
+        </div>
+      </router-link>
+    </div>
+  </div>
+  <!-- /Packs -->
+</section>
+

@@ -1,0 +1,120 @@
+<section class="profile content-area" v-if="user">
+
+<!-- Pack Top -->
+<div class="pack-top">
+  <!-- Banner -->
+  <div class="banner">
+      <img :src="getProfileURL(user.slug)" alt="banner">
+  </div>
+  <!-- /Banner -->
+
+  <!-- Pack Details -->
+  <div class="stats__group">
+      <div class="title-holder">
+        <h1 class="title" :data-text="user.name" v-html="user.name"></h1>
+      </div>
+      <div class="stats__group__container tile">
+        <div class="stat">Total Stickrs: <span class="stat__value" v-html="user.collectedStickrs.length"></span></div>
+        <div class="stat">Created: <span class="stat__value" v-html="joinedDate"></span></div>
+      </div>
+      <div class="stats__group__container tile" v-html="user.description"></div>
+      <div class="stats__group__holder">
+        <router-link :to="{ name:'stickr', params:{ slug:stickr.slug, coll:stickr.slugCollection } }" tag="div" class="stickr" v-for="(stickr, i) in myFavStickrs" :key="i">
+          <img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="collection image">
+        </router-link>
+      </div>
+    </div>
+  <!-- /Pack Details -->
+
+</div>
+<!-- /Pack Top -->
+
+<!-- Container -->
+<div class="container">
+  <!-- Stats -->
+  <aside class="stats">
+    <!-- Controls -->
+    <div class="stats__group" v-show="true">
+      <h2>Controls</h2>
+      <div class="stats__group__container tile">
+        <router-link :to="{ name:'collection-new' }" tag="a">New Collection</router-link>
+        <router-link :to="{ name:'pack-edit', params: { slug:'slug-gems' } }" tag="a">New Pack</router-link>
+        <hr style="width:100%">
+        <router-link :to="{ name:'pack-edit', params: { slug:'slug-gems' } }" tag="a">Modify</router-link>
+      </div>
+    </div>
+    <!-- /Controls -->
+    <!-- Collections -->
+    <div class="stats__group">
+      <h2>My Collections</h2>
+      <div class="stats__group__container tile cards">
+        <router-link :to="{ name:'collection', params:{ slug:coll.slug } }" class="card tile" v-for="(coll, i) in myCollections" :key="i">
+          <div class="card__title" v-html="coll.name"></div>
+          <div class="card__image">
+            <img :src="getCollectionURL(coll.slug)" alt="collection image">
+          </div>
+        </router-link>
+      </div>
+    </div>
+    <!-- /Collections -->
+    <!-- Packs -->
+    <div class="stats__group">
+      <h2>My Packs</h2>
+      <div class="stats__group__container tile cards">
+        <router-link :to="{ name:'collection', params:{ slug:'slug' } }" class="card tile" v-for="i in 2" :key="i">
+          <div class="card__title" v-html="'Pack'"></div>
+          <div class="card__image">
+            <img src="../../assets/tests/msc-banner.png" alt="collection image">
+          </div>
+        </router-link>
+      </div>
+    </div>
+    <!-- /Packs -->
+  </aside>
+  <!-- /Stats -->
+
+  <!-- Main -->
+  <section class="main">
+    <!-- Previews -->
+    <div class="previews">
+      <!-- Alls -->
+      <div class="group other">
+        <div class="group__collections">
+          <!-- Collection -->
+          <div class="collection" v-for="(coll, i) in collections" :key="i">
+            <router-link :to="{ name:'collection', params: { slug:coll.slug } }" tag="div" class="collection__details collection-tile tile">
+              <div class="collection__details__image"><img :src="getCollectionURL(coll.slug)" alt="stickr"></div>
+              <h3 class="collection__details__title" v-html="coll.name"></h3>
+            </router-link>
+            <div class="collection__stickrs">
+              <router-link :to="{ name:'stickr', params:{ slug:stickr.slug, coll:coll.slug } }" tag="div" class="stickr" v-for="(stickr, i) in getStickrsInCollection(coll.slug)" :key="i">
+                <div class="stickr__image"><img :src="getStickrURL(coll.slug, stickr.slug)" alt="stickr"></div>
+                <h3 class="stickr__title" v-html="stickr.name"></h3>
+              </router-link>
+            </div>
+          </div>
+          <!-- /Collection -->
+        </div>
+      </div>
+      <!-- /Alls -->
+    </div>
+    <!-- /Previews -->
+  </section>
+  <!-- /Main -->
+
+  <!-- Controls -->
+  <div class="stats__group controls-alt" v-show="true">
+    <h2>Controls</h2>
+    <div class="stats__group__container tile">
+      <router-link :to="{ name:'pack-edit', params: { slug:'slug-gems' } }" tag="a">Edit</router-link>
+      <router-link :to="{ name:'pack-delete', params: { slug:'slug-gems' } }" tag="a">Delete</router-link>
+    </div>
+  </div>
+  <!-- /Controls -->
+
+</div>
+<!-- /Container -->
+      
+      
+</section>
+

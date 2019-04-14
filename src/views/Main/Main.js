@@ -1,19 +1,30 @@
+import store from '@/store'
+import mixins from '@/mixins'
+
 export default {
   name: 'stickr-main',
   components: {},
   props: [],
+  mixins: [mixins],
   data () {
     return {
-      // max name and set to 30 chars plz
+      stickrs: [],
+      collections: []
     }
   },
   computed: {
-
+    
   },
   mounted () {
-
+    store.dispatch('waitForData')
+      .then(() => {
+        this.stickrs = store.state.stickrs
+        this.collections = store.state.collections
+      })
   },
   methods: {
-
+    getStickrCollectionName(slugCollection) {
+      return this.collections.find(c => c.slug == slugCollection).name
+    }
   }
 }

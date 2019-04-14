@@ -9,13 +9,17 @@
 </template>
 
 <script>
-import NavigationComponent from '@/components/navigation';
-import FooterComponent from '@/components/footer';
+import NavigationComponent from '@/components/navigation'
+import FooterComponent from '@/components/footer'
+import store from '@/store'
 
 export default {
   components : {
     'stickr-nav' : NavigationComponent,
     'stickr-footer' : FooterComponent
+  },
+  created() {
+    store.dispatch('load')
   }
 }
 </script>
@@ -25,7 +29,6 @@ export default {
 @import '/sass/main';
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

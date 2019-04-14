@@ -1,0 +1,95 @@
+@import '../../../sass/main';
+
+.modify-collection {
+    @include display-flex();
+    flex-flow: column;
+
+    .main-title {
+        padding: 1px 7px;
+        margin: 10px auto;
+        font-size: 1.8em;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .banner {
+        position: relative;
+        padding: 0;
+        border-radius: 0;
+
+        input {
+            display: none;
+        }
+
+        * { pointer-events: none; }
+
+        &__image {
+            opacity: 1;
+            pointer-events: all;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+                transform: scale(1.1) rotateZ(2deg);
+            }
+        }
+
+        &__loaded-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @include display-flex();
+            justify-content: center;
+            align-items: center;
+            background: $colour-bg-light;
+            max-height: 450px;
+            pointer-events: none;
+
+            img {
+                max-height: inherit;
+            }
+        }
+
+        .uploading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @include display-flex();
+            justify-content: center;
+            align-items: center;
+            background: white;
+            pointer-events: none;
+        }
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(150px, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 3px;
+        margin-top: 10px;
+
+        &__title {
+            grid-column: span 2;
+        }
+
+        .detail {
+            font-weight: bold;
+            text-align: right;
+        }
+    }
+
+
+    .submit {
+        margin: 15px 0;
+        font-size: 1.4em;
+        
+        button {
+            padding:  5px 15px;
+        }
+    }
+}

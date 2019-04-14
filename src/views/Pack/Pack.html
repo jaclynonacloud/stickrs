@@ -1,0 +1,107 @@
+<section class="pack content-area">
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <a @click="$router.go(-1)" class="breadcrumbs__link">Back</a>
+    <div class="breadcrumbs__active" v-html="'Pack Name'"></div>
+  </div>
+  <!-- /Breadcrumbs -->
+  
+  <!-- Pack Top -->
+  <div class="pack-top">
+    <!-- Banner -->
+    <div class="banner">
+        <img src="../../assets/tests/pack-icon-2.png" alt="banner">
+    </div>
+    <!-- /Banner -->
+
+    <!-- Pack Details -->
+    <div class="stats__group">
+        <div class="title-holder">
+          <h1 class="title" data-text="Slug Gems">Slug Gems</h1>
+        </div>
+        <div class="stats__group__container tile">
+          <h3>Pack</h3>
+          <div class="stat">Owned by: <router-link :to="{ name:'profile', params: { slug:'jaclynonacloud' } }" class="stat__value" v-html="'jaclynonacloud'"></router-link></div>
+          <div class="stat">Created: <span class="stat__value" v-html="'January 1, 1999'"></span></div>
+        </div>
+        <div class="stats__group__container tile">
+          This is a description about the current pack.
+        </div>
+      </div>
+    <!-- /Pack Details -->
+
+  </div>
+  <!-- /Pack Top -->
+
+
+
+
+  <!-- Container -->
+  <div class="container">
+      <!-- Stats -->
+      <aside class="stats">
+        <!-- Controls -->
+        <div class="stats__group" v-show="true">
+          <h2>Controls</h2>
+          <div class="stats__group__container tile">
+            <router-link :to="{ name:'pack-edit', params: { slug:'slug-gems' } }" tag="a">Edit</router-link>
+            <router-link :to="{ name:'pack-delete', params: { slug:'slug-gems' } }" tag="a">Delete</router-link>
+          </div>
+        </div>
+        <!-- /Controls -->
+        <!-- Collections -->
+        <div class="stats__group">
+          <h2>Collections</h2>
+          <div class="stats__group__container tile cards">
+            <router-link :to="{ name:'collection', params:{ slug:'msc' } }" class="card tile" v-for="i in 5" :key="i">
+              <div class="card__title">More Slugcats Mod</div>
+              <div class="card__image">
+                <img src="../../assets/tests/msc-banner.png" alt="collection image">
+              </div>
+            </router-link>
+          </div>
+        </div>
+        <!-- /Collections -->
+      </aside>
+      <!-- /Stats -->
+  
+      <!-- Main -->
+      <section class="main">
+        <!-- Previews -->
+        <div class="previews">
+          <!-- Alls -->
+          <div class="group other">
+            <h2 class="group__title">Stickrs</h2>
+            <h3 class="group__amount">0/99</h3>
+            <div class="group__stickrs">
+              <!-- Stickr -->
+              <router-link :to="{ name:'stickr', params: { coll:'msc', slug:'saint' } }" tag="a" class="stickr" v-for="i in 10" :key="i">
+                <div class="stickr__image silhouette"><img src="../../assets/tests/saint-edit.png" alt="stickr"></div>
+                <h3 class="stickr__title">Stickr Name</h3>
+                <button>Collect</button>
+                <div class="owned"></div>
+              </router-link>
+            </div>
+          </div>
+          <!-- /Alls -->
+        </div>
+        <!-- /Previews -->
+      </section>
+      <!-- /Main -->
+  
+      <!-- Controls -->
+      <div class="stats__group controls-alt" v-show="true">
+        <h2>Controls</h2>
+        <div class="stats__group__container tile">
+          <router-link :to="{ name:'pack-edit', params: { slug:'slug-gems' } }" tag="a">Edit</router-link>
+          <router-link :to="{ name:'pack-delete', params: { slug:'slug-gems' } }" tag="a">Delete</router-link>
+        </div>
+      </div>
+      <!-- /Controls -->
+  
+    </div>
+    <!-- /Container -->
+
+</section>
+

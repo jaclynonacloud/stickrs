@@ -3,10 +3,17 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import MainComponent from './views/Main'
 import CollectionComponent from './views/Collection'
+import StickrComponent from './views/Stickr'
+import PackComponent from './views/Pack'
+import ProfileComponent from './views/Profile'
+import ModifyCollectionComponent from './views/modify/ModifyCollection'
 
 Vue.use(Router)
 
 export default new Router({
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
   routes: [
     {
       path: '/',
@@ -14,24 +21,34 @@ export default new Router({
       component: MainComponent
     },
     {
-      path: '/user/:id',
-      name: 'user',
-      component: CollectionComponent
+      path: '/profile/:slug',
+      name: 'profile',
+      component: ProfileComponent
     },
     {
-      path: '/collection/:id',
+      path: '/collection/:slug',
       name: 'collection',
       component: CollectionComponent
     },
     {
-      path: '/collection/edit/:id',
-      name: 'collection-edit',
-      component: CollectionComponent
+      path: '/collection/new',
+      name: 'collection-new',
+      component: ModifyCollectionComponent
     },
     {
-      path: '/stickr/:coll/:id',
+      path: '/collection/edit/:slug',
+      name: 'collection-edit',
+      component: ModifyCollectionComponent
+    },
+    {
+      path: '/pack/:slug',
+      name: 'pack',
+      component: PackComponent
+    },
+    {
+      path: '/stickr/:coll/:slug',
       name: 'stickr',
-      component: CollectionComponent
+      component: StickrComponent
     },
     {
       path: '/about',

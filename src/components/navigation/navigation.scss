@@ -102,10 +102,24 @@
             margin-right: 5px;
         }
 
-        &__icon {
-            &__image {
-                width: 40px;
-                height: 40px;
+        .logged-in {
+            @include display-flex();
+            flex-flow: row;
+            align-items: center;
+
+            &__icon {
+                background: mix($colour-bg, $colour-font-secondary, 50);
+                border-radius: 50%;
+
+                &:hover {
+                    background: $colour-primary;
+                }
+
+                margin-left: 10px;
+                &__image {
+                    width: 40px;
+                    height: 40px;
+                }
             }
         }
 

@@ -9,7 +9,7 @@
         <!-- <img class="set" src="#" alt="set"> -->
       </div>
       <div class="featured__content">
-        <router-link :to="{ name:'collection', params: { id: 'msc' }}" tag="h2" class="title">MSC Saint Stickr!</router-link>
+        <router-link :to="{ name:'collection', params: { slug: 'msc' }}" tag="h2" class="title">MSC Saint Stickr!</router-link>
         <div class="description">Get this new stickr while it lasts!</div>
         <div class="timer">Available for <span class="time">0:30:29</span></div>
       </div>
@@ -17,22 +17,23 @@
     <!-- /Featured -->
 
     <!-- Stickrs -->
-    <div class="collection-group">
+    <div class="collection-group" v-if="stickrs">
       <div class="collection-group__head">
         <h1 class="title tile" data-text="Stickrs">Stickrs</h1>
         <button class="browse styled">Browse</button>
       </div>
       <div class="collection">
 
-        <div class="collection__item" v-for="i in 15" :key="i">
-          <div class="collection__item__image">
-            <img src="../../assets/tests/saint-edit.png" alt="stickr">
+        <router-link :to="{ name:'stickr', params: { coll:stickr.slugCollection, slug:stickr.slug } }" tag="div" class="collection__item" v-for="(stickr, i) in stickrs" :key="i">
+          <div class="collection__item__image" :class="{'silhouette':stickr.hidden }">
+            <img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="stickr">
           </div>
-          <div class="collection__item__content">
-            <div class="title">Stickr</div>
-            <div class="set">Collection Name</div>
+          <div class="collection__item__content tile">
+            <div class="title" v-html="stickr.name" v-if="!stickr.hidden"></div>
+            <div class="title" v-else>???</div>
+            <div class="set" v-html="getStickrCollectionName(stickr.slugCollection)"></div>
           </div>
-        </div>
+        </router-link>
 
       </div>
     </div>
@@ -45,13 +46,13 @@
         </div>
       <div class="collection">
 
-        <router-link class="collection__item" v-for="i in 10" :key="i" :to="{ name:'collection', params:{ id:'msc' } }" tag="div">
+        <router-link class="collection__item" v-for="(coll, i) in collections" :key="i" :to="{ name:'collection', params:{ slug:coll.slug } }" tag="div">
           <div class="collection__item__image">
-            <img src="../../assets/tests/msc-banner.png" alt="collection">
+            <img :src="getCollectionURL(coll.slug)" alt="collection">
           </div>
-          <div class="collection__item__content">
-            <div class="title">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-            <div class="set">by <router-link :to="{ name:'user', params:{ id:'jaclynonacloud' } }" v-html="'jaclynonacloud'"></router-link></div>
+          <div class="collection__item__content tile">
+            <div class="title" v-html="coll.name"></div>
+            <div class="set">by <router-link :to="{ name:'profile', params:{ slug:coll.ownership } }" v-html="coll.ownership"></router-link></div>
           </div>
         </router-link>
       </div>
