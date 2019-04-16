@@ -8,7 +8,7 @@ import axios from 'axios'
 
 Vue.use(VueAxios, axios);
 
-const URL = process.env.API_URL || "http://localhost:4000/api"
+const URL = process.env.VUE_API_URL || "http://localhost:4000/api"
 
 export default new Vuex.Store({
   state: {
