@@ -8,7 +8,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./db/config.js')
 
-require('dotenv').load()
+// require('dotenv').load()
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
