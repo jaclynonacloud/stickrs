@@ -10,7 +10,8 @@ export default {
       slug: '',
       name: '',
       description: '',
-      bannerSrc: ''
+      bannerSrc: '',
+      uploadErrors: []
     }
   },
   computed: {
@@ -51,8 +52,44 @@ export default {
     },
 
     submitCollection(e) {
+      console.log("SUBMIT")
+      //test for required data
+      this.uploadErrors = []
+      if(this.slug == "") this.uploadErrors.push("Please enter a slug name!")
+      if(this.name == "") this.uploadErrors.push("Please enter a name!")
+
+      //if there are errors, wipe them out after x time
+      if(this.uploadErrors.length > 0) {
+        const duration = setTimeout(() => {
+          this.uploadErrors = []
+          clearTimeout(duration)
+        }, 4000)
+      }
+
+      //if there are errors, do not send to database
+      if(this.uploadErrors.length > 0) return
+
       //get the data
-      const data = { slug:this.slug, name:this.name, description:this.description, bannerImage:this.bannerSrc }
+      const data = { 
+        slug:this.slug, 
+        name:this.name, 
+        description:this.description, 
+        bannerImage:this.bannerSrc,
+        creator:'jaclynonacloud',
+        curators: [],
+        stickrs: [],
+        unlisted: true
+      }
+
+
+      //listen for finish -- redirect when done
+      this.$store.subscribe((mutation, state) => {
+        const wait = setTimeout(() => {
+          clearTimeout(wait)
+          this.$router.push({ name:'collection', params: { slug:data.slug } })
+        }, 100)
+      })
+      //commit
       store.commit("addCollection", data)
     }
 

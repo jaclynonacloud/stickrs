@@ -9,13 +9,13 @@ let User = new Schema({
     spasshash: String,
     description: String,
     joined: Date,
-    collectedStickrs: [{slug:String, slugCollection:String}],
-    featuredStickrs: [{slug:String, slugCollection:String}], //stickrs on profile
+    collectedStickrs: [{slug:String, coll:String}],
+    featuredStickrs: [{slug:String, coll:String}], //stickrs on profile
 
     curateCollections: [String], //collections a user curates but doesn't own
-    curateStickrs: [{slug:String, slugCollection:String}],
+    curateStickrs: [{slug:String, coll:String}],
     curatePacks: [String],
-    favStickrs: [{slug:String, slugCollection:String}],
+    favStickrs: [{slug:String, coll:String}],
     favCollections: [String],
     subCollections: [String],
     favPacks: [String],

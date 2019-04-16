@@ -23,8 +23,8 @@ export default {
       })
   },
   methods: {
-    getStickrCollectionName(slugCollection) {
-      return this.collections.find(c => c.slug == slugCollection).name
+    getStickrCollectionName(coll) {
+      return this.collections.find(c => c.slug == coll).name
     }
   }
 }

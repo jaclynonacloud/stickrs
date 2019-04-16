@@ -68,6 +68,10 @@ h1.title {
     .sidebar {
         @include display-flex();
         flex-flow: column;
+
+        a {
+            display: block;
+        }
     }
 
     .main {
@@ -129,6 +133,7 @@ h1.title {
                         padding: 0 3px;
                         margin: 5px 0;
                         color: $colour-primary;
+                        cursor: pointer;
 
                         @extend %after-arrow;
                     }
@@ -140,11 +145,12 @@ h1.title {
                     }
 
                     &__image {
+                        flex: 1;
                         @include display-flex();
                         justify-content: center;
                         align-items: center;
                         width: 100%;
-                        max-width: 50px;
+                        max-width: 100%;
                         
 
                         @media #{$size-medium} {
@@ -154,7 +160,7 @@ h1.title {
                         }
     
                         img {
-                            width: auto;
+                            max-width: inherit;
                             max-height: 150px;
                         }
                     }
@@ -231,6 +237,7 @@ h1.title {
             font-size: 1.2em;
             padding: 5px;
             box-sizing: border-box;
+            cursor: pointer;
         }
 
         &__image {
@@ -250,5 +257,29 @@ h1.title {
             }
 
         }
+    }
+}
+
+
+
+.edit-bar {
+    background: white;
+    border-radius: 0;
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    box-sizing: border-box;
+
+    @media #{$size-large} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        width: unset;
+        min-width: 100px;
+        padding: 10px 15px;
     }
 }

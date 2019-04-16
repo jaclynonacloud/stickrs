@@ -18,7 +18,7 @@
   <div class="stats__group">
       <div class="stats__group__container tile">
         <h3 style="grid-column: span 2">Collection</h3>
-        <div class="stat">Owned by: <router-link :to="{ name:'profile', params: { slug:collection.ownership } }" class="stat__value" v-html="collection.ownership"></router-link></div>
+        <div class="stat">Creator: <router-link :to="{ name:'profile', params: { slug:collection.creator } }" class="stat__value" v-html="collection.creator"></router-link></div>
         <div class="stat">Created: <span class="stat__value" v-html="createdDate"></span></div>
         <div class="stat">Curators: 
           <div class="detail__list">
@@ -47,6 +47,7 @@
       <div class="sidebar__group" v-show="true">
         <h2>Controls</h2>
         <div class="sidebar__group__container tile">
+          <router-link :to="{ name:'stickr-add', params: { coll:collection.slug } }" tag="a">New Stickr</router-link>
           <router-link :to="{ name:'collection-edit', params: { slug:'msc' } }" tag="a">Edit</router-link>
           <router-link :to="{ name:'collection-delete', params: { slug:'msc' } }" tag="a">Delete</router-link>
         </div>
@@ -56,9 +57,9 @@
       <div class="sidebar__group">
         <h2>Includes</h2>
         <div class="sidebar__group__container tile">
-          <div class="stat">Normal Stickers: <span class="stat__value" v-html="'30'"></span></div>
-          <div class="stat">Rare Stickers: <span class="stat__value" v-html="'3'"></span></div>
-          <div class="stat">Exclusive Stickers: <span class="stat__value" v-html="'3'"></span></div>
+          <div class="stat">Stickers: <span class="stat__value" v-html="stickrs.length"></span></div>
+          <div class="stat">Rare Stickers: <span class="stat__value" v-html="rareStickrs.length"></span></div>
+          <div class="stat">Exclusive Stickers: <span class="stat__value" v-html="exclusiveStickrs.length"></span></div>
         </div>
       </div>
       <!-- /Includes -->
@@ -97,8 +98,8 @@
           <h3 class="group__amount">0/{{ exclusiveStickrs.length }}</h3>
           <div class="group__stickrs">
             <!-- Stickr -->
-            <router-link :to="{ name:'stickr', params: { coll:stickr.slugCollection, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in exclusiveStickrs" :key="i">
-              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="stickr"></div>
+            <router-link :to="{ name:'stickr', params: { coll:stickr.coll, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in exclusiveStickrs" :key="i">
+              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.coll, stickr.slug)" alt="stickr"></div>
               <h3 class="stickr__title" v-html="stickr.name" v-if="!stickr.hidden"></h3>
               <h3 class="stickr__title" v-else>???</h3>
               <div class="stickr__availability">
@@ -118,8 +119,8 @@
           <h3 class="group__amount">0/{{ rareStickrs.length }}</h3>
           <div class="group__stickrs">
             <!-- Stickr -->
-            <router-link :to="{ name:'stickr', params: { coll:stickr.slugCollection, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in rareStickrs" :key="i">
-              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="stickr"></div>
+            <router-link :to="{ name:'stickr', params: { coll:stickr.coll, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in rareStickrs" :key="i">
+              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.coll, stickr.slug)" alt="stickr"></div>
               <h3 class="stickr__title" v-html="stickr.name" v-if="!stickr.hidden"></h3>
               <h3 class="stickr__title" v-else>???</h3>
               <button>Collect</button>
@@ -135,8 +136,8 @@
           <h3 class="group__amount">0/{{ stickrs.length }}</h3>
           <div class="group__stickrs">
             <!-- Stickr -->
-            <router-link :to="{ name:'stickr', params: { coll:stickr.slugCollection, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in stickrs" :key="i">
-              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="stickr"></div>
+            <router-link :to="{ name:'stickr', params: { coll:stickr.coll, slug:stickr.slug } }" tag="div" class="stickr" v-for="(stickr, i) in stickrs" :key="i">
+              <div class="stickr__image" :class="{'silhouette':stickr.hidden }"><img :src="getStickrURL(stickr.coll, stickr.slug)" alt="stickr"></div>
               <h3 class="stickr__title" v-html="stickr.name" v-if="!stickr.hidden"></h3>
               <h3 class="stickr__title" v-else>???</h3>
               <button>Collect</button>

@@ -15,7 +15,8 @@ export default new Vuex.Store({
     stickrs: [],
     collections: [],
     users: [],
-    hasLoaded: false
+    hasLoaded: false,
+    lastUpdated: ''
   },
   mutations: {
     init(state, payload) {
@@ -32,18 +33,10 @@ export default new Vuex.Store({
 
     //adding stuff to database
     addCollection(state, payload) {
-      const { slug, name, description } = payload
       //build the body
-      const body = {
-        slug,
-        name,
-        ownership : "jaclynonacloud",
-        created : (new Date()).toString(),
-        curators : [],
-        description,
-        stickrs : [],
-        unlisted : true
-      }
+      const body = payload
+      //add extra fields
+      body.created (new Date()).toString()
 
       new Promise(async(res, rej) => {
         //send the body to the database
@@ -55,16 +48,83 @@ export default new Vuex.Store({
           }
   
           //add collection to collections array
-          state.collections.push(result.data.result)
-          res(result.data.result)
+          let collection = Object.assign({}, payload)
+          collection.created = body.created
+          delete collection.bannerImage
+          state.collections.push(collection)
+          res(collection)
         }
         else {
           rej(result.statusText)
         }
 
       })
+    },
 
+    addStickr(state, payload) {
+      //build the body
+      let body = payload
+      //add extra fields
+      body.uploaded = (new Date()).toString()
 
+      new Promise(async(res, rej) => {
+        //send the body to the database
+        const result = await axios.post(`${URL}/stickrs/add`, body)
+        if(result.status == 200) {
+          //save the header image if there was one
+          if(payload.bannerImage && payload.bannerImage != null) {
+            const uploadResult = await axios.post(`${URL}/upload`, { image: payload.bannerImage, directory: `assets/uploads/collections/${payload.coll}/stickrs/`, name: `${payload.slug}.png` })
+          }
+  
+          //add stickr to stickrs array
+          let stickr = Object.assign({}, payload)
+          stickr.uploaded = body.uploaded
+          delete stickr.bannerImage
+          state.stickrs.push(stickr)
+          res(stickr)
+        }
+        else {
+          rej(result.statusText)
+        }
+
+      })
+    },
+    editStickr(state, payload) {
+      //build the body
+      let body = payload
+
+      new Promise(async(res, rej) => {
+        //if we cannot find old stickr, don't continue
+        let oldStickr = state.stickrs.find(s => s.slug == body.oldSlug && s.coll == body.coll)
+        if(oldStickr == null) rej("Could not find old stickr to edit!")
+
+        //send the body to the database
+        console.log(body)
+        await axios.put(`${URL}/stickrs/edit`, body)
+          .then(async e => {
+            //if the call was good
+            if(e.status == 200) { 
+
+              //save the header image if there was one
+              let oldName = (payload.oldSlug != payload.slug) ? `${payload.oldSlug}.png` : null
+              if(payload.bannerImage && payload.bannerImage != null) {
+                  await axios.post(`${URL}/upload`, { image: payload.bannerImage, directory: `assets/uploads/collections/${payload.coll}/stickrs/`, name: `${payload.slug}.png`, oldName })
+              }
+
+              //add collection to collections array
+              //update the stickr array
+              let stickr = Object.assign({}, payload)
+              delete stickr.oldSlug
+              delete stickr.bannerImage
+              let index = state.stickrs.indexOf(oldStickr)
+              if(index != -1) state.stickrs.splice(index, 1, stickr)
+              res(stickr)
+
+            }
+          })
+          .catch(err => rej("There's a problem!\n" + err))
+
+      })
     },
 
 

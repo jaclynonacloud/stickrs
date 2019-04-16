@@ -20,12 +20,12 @@ export default {
   mounted () {
     store.dispatch('waitForData')
       .then(() => {
-        this.stickr = store.state.stickrs.find(e => e.slug == this.$route.params.slug && e.slugCollection == this.$route.params.coll)
+        this.stickr = store.state.stickrs.find(e => e.slug == this.$route.params.slug && e.coll == this.$route.params.coll)
       })
   },
   methods: {
-    getStickrCollectionName(slugCollection) {
-      return store.state.collections.find(c => c.slug == slugCollection).name
+    getStickrCollectionName(coll) {
+      return store.state.collections.find(c => c.slug == coll).name
     }
   }
 }

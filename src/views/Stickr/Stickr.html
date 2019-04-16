@@ -1,14 +1,14 @@
 <section class="stickr content-area" v-if="stickr">
   <!-- Breadcrumbs -->
   <div class="breadcrumbs">
-    <router-link :to="{ name:'collection', params:{ slug:stickr.slugCollection } }" v-html="getStickrCollectionName(stickr.slugCollection)" class="breadcrumbs__link"></router-link>
+    <router-link :to="{ name:'collection', params:{ slug:stickr.coll } }" v-html="getStickrCollectionName(stickr.coll)" class="breadcrumbs__link"></router-link>
     <div class="breadcrumbs__active" v-html="stickr.name" v-if="!stickr.hidden"></div>
     <div class="breadcrumbs__active" v-else>???</div>
   </div>
   <!-- /Breadcrumbs -->
   <!-- Image -->
   <div class="stickr__image" :class="{'silhouette':stickr.hidden }">
-    <img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="image">
+    <img :src="getStickrURL(stickr.coll, stickr.slug)" alt="image">
   </div>
   <!-- /Image -->
 
@@ -39,10 +39,17 @@
               <span class="detail__value" v-html="art.name" v-else></span>
           </div>
       </div>
-      <div class="detail__title">Curator</div><router-link :to="{ name:'profile', params:{ 'slug':stickr.slugCurator } }" class="detail__value" v-html="stickr.slugCurator"></router-link>
+      <div class="detail__title">Curator</div><router-link :to="{ name:'profile', params:{ 'slug':stickr.curator } }" class="detail__value" v-html="stickr.curator"></router-link>
       <div class="detail__title">Uploaded</div><div class="detail__value" v-html="createdDate"></div>
     </div>
     <div class="details description tile" v-html="stickr.description" v-if="!stickr.hidden"></div>
+
+    <!-- Edit -->
+    <div class="edit-bar tile">
+      <router-link :to="{ name:'stickr-edit', params: { slug:stickr.slug, coll:stickr.coll } }">Edit</router-link>
+      <router-link :to="{ name:'edit-stickr', params: { slug:stickr.slug, coll:stickr.coll } }">Delete</router-link>
+    </div>
+    <!-- /Edit -->
   </div>
   <!-- /Details -->
 

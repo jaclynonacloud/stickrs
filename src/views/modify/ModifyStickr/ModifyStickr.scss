@@ -1,6 +1,7 @@
 @import '../../../sass/main';
 
-.modify-collection {
+.modify-stickr {
+    position: relative;
     @include display-flex();
     flex-flow: column;
 
@@ -27,6 +28,9 @@
         &__image {
             opacity: 1;
             pointer-events: all;
+            max-width: 800px;
+            max-height: 800px;
+            object-fit: contain;
             cursor: pointer;
 
             &:hover {
@@ -45,11 +49,13 @@
             justify-content: center;
             align-items: center;
             background: $colour-bg-light;
-            max-height: 450px;
+            height: 450px;
             pointer-events: none;
 
             img {
-                max-height: inherit;
+                max-width: 450px;
+                max-height: 450px;
+                object-fit: cover;
             }
         }
 
@@ -81,6 +87,63 @@
         .detail {
             font-weight: bold;
             text-align: right;
+
+
+            &__group {
+                @include display-flex();
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+
+                .item {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-gap: 4px;
+                    align-items: center;
+                    width: 100%;
+                    margin-bottom: 5px;
+
+                    @media #{$size-large} {
+                        grid-template-columns: 1fr 1fr 30px;
+                    }
+
+                    .value {
+                        height: 28px;
+                        box-sizing: border-box;
+                    }
+
+                    .delete {
+                        height: 28px;
+                        font-size: 1.2em;
+                        border: solid 1px $colour-font-secondary;
+                        cursor: pointer;
+                        box-sizing: border-box;
+                        margin: 0 35%;
+
+                        @media #{$size-large} {
+                            margin: 0;
+                        }
+
+                        &:hover {
+                            transform: scale(1.1);
+                            z-index: 2;
+                        }
+                    }
+                }
+
+                &__add {
+                    align-self: flex-start;
+                    border: solid 1px $colour-font-primary;
+                    padding: 2px 6px;
+                    font-size: 1.2em;
+                    cursor: pointer;
+
+                    &:hover {
+                        transform: scale(1.1);
+                        z-index: 2;
+                    }
+                }
+            }
         }
     }
 
@@ -93,6 +156,7 @@
             padding:  5px 15px;
         }
     }
+
 
     .errors {
         position: fixed;
@@ -111,4 +175,5 @@
       .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
     }
+
 }

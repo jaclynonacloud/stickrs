@@ -7,6 +7,7 @@ import StickrComponent from './views/Stickr'
 import PackComponent from './views/Pack'
 import ProfileComponent from './views/Profile'
 import ModifyCollectionComponent from './views/modify/ModifyCollection'
+import ModifyStickrComponent from './views/modify/ModifyStickr'
 
 Vue.use(Router)
 
@@ -20,11 +21,13 @@ export default new Router({
       name: 'home',
       component: MainComponent
     },
+    //profile
     {
       path: '/profile/:slug',
       name: 'profile',
       component: ProfileComponent
     },
+    //collection
     {
       path: '/collection/:slug',
       name: 'collection',
@@ -40,15 +43,27 @@ export default new Router({
       name: 'collection-edit',
       component: ModifyCollectionComponent
     },
+    //pack
     {
       path: '/pack/:slug',
       name: 'pack',
       component: PackComponent
     },
+    //stickr
     {
       path: '/stickr/:coll/:slug',
       name: 'stickr',
       component: StickrComponent
+    },
+    {
+      path: '/stickr/:coll/new',
+      name: 'stickr-add',
+      component: ModifyStickrComponent
+    },
+    {
+      path: '/stickr/:coll/:slug/edit',
+      name: 'stickr-edit',
+      component: ModifyStickrComponent
     },
     {
       path: '/about',

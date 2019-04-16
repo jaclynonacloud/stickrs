@@ -28,4 +28,10 @@
   <div class="submit">
     <button type="submit" class="styled" @click.self="submitCollection">Submit</button>
   </div>
+
+  <transition name="fade">
+  <div class="errors" v-if="uploadErrors.length > 0">
+      <p v-for="(msg, i) in uploadErrors" v-html="msg"></p>
+  </div>
+  </transition>
 </section>

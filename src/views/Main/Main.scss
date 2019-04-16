@@ -137,6 +137,7 @@
             flex-flow: column;
             align-items: center;
             min-width: 100px;
+            max-width: 160px;
             margin: 4px;
             cursor: pointer;
 
@@ -150,10 +151,12 @@
                 align-items: center;
                 // background: $colour-bg-light;
                 width: 100%;
+                max-width: 100%;
                 height: 100px;
 
                 img {
                     width: auto;
+                    max-width: inherit;
                     max-height: 100px;
                 }
             }
@@ -186,8 +189,16 @@
                 grid-template-columns: repeat(4, 1fr);
                 font-size: 0.9em;
 
+                &__item {
+                    max-width: unset;
+                }
+
                 &__item__content .title {
                     padding: 5px;
+                }
+
+                &__item__image {
+                    height: 50px;
                 }
 
                 img {

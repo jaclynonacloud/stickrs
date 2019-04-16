@@ -19,10 +19,10 @@ export default {
 
 
     myCollections() {
-      return store.state.collections.filter(c => c.ownership == this.user.slug)
+      return store.state.collections.filter(c => c.creator == this.user.slug)
     },
     myFavStickrs() {
-      return this.user.favStickrs.map(s => store.state.stickrs.find(storeStickr => storeStickr.slug == s.slug && storeStickr.slugCollection == s.slugCollection))
+      return this.user.favStickrs.map(s => store.state.stickrs.find(storeStickr => storeStickr.slug == s.slug && storeStickr.coll == s.coll))
     }
 
   },
@@ -41,9 +41,8 @@ export default {
     //collections
     getCollections() {
       //get collection groups
-      console.log("SI", this.user.collectedStickrs)
       let collections = []
-      this.user.collectedStickrs.map(s => s.slugCollection).filter((s, i, a) => a.indexOf(s) == i)
+      this.user.collectedStickrs.map(s => s.coll).filter((s, i, a) => a.indexOf(s) == i)
         .forEach(s => {
           collections.push(this.getCollectionData(s))
         })
@@ -55,7 +54,7 @@ export default {
     },
 
     getStickrsInCollection(slug) {
-      return this.user.collectedStickrs.map(s => store.state.stickrs.find(storeStickr => storeStickr.slug == s.slug)).filter(s => s.slugCollection == slug)
+      return this.user.collectedStickrs.map(s => store.state.stickrs.find(storeStickr => storeStickr.slug == s.slug)).filter(s => s.coll == slug)
     },
     
 

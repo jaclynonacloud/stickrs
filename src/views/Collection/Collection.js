@@ -21,6 +21,7 @@ export default {
     exclusiveStickrs() {
       const exclusives = this.stickrs.filter(s => {
         let hasFreebie = false
+        if(s.availability == null) return false
         s.availability.forEach(a => { if(a.type.toLowerCase() == "freebie")  hasFreebie = true })
         return hasFreebie
       })
@@ -28,7 +29,7 @@ export default {
     },
 
     rareStickrs() {
-      return this.stickrs.filter(s => s.rarity > 6)
+      return this.stickrs.filter(s => s.rarity > 0.6)
     },
 
 
@@ -38,9 +39,7 @@ export default {
     store.dispatch('waitForData')
       .then(() => {
         this.collection = store.state.collections.find(c => c.slug == this.$route.params.slug)
-        this.stickrs = store.state.stickrs.filter(s => s.slugCollection == this.$route.params.slug)
-
-        console.log("EXCLUSIVE", this.exclusiveStickrs)
+        this.stickrs = store.state.stickrs.filter(s => s.coll == this.$route.params.slug)
       })
   },
   methods: {

@@ -15,12 +15,12 @@
       </div>
       <div class="stats__group__container tile">
         <div class="stat">Total Stickrs: <span class="stat__value" v-html="user.collectedStickrs.length"></span></div>
-        <div class="stat">Created: <span class="stat__value" v-html="joinedDate"></span></div>
+        <div class="stat">Joined: <span class="stat__value" v-html="joinedDate"></span></div>
       </div>
       <div class="stats__group__container tile" v-html="user.description"></div>
       <div class="stats__group__holder">
-        <router-link :to="{ name:'stickr', params:{ slug:stickr.slug, coll:stickr.slugCollection } }" tag="div" class="stickr" v-for="(stickr, i) in myFavStickrs" :key="i">
-          <img :src="getStickrURL(stickr.slugCollection, stickr.slug)" alt="collection image">
+        <router-link :to="{ name:'stickr', params:{ slug:stickr.slug, coll:stickr.coll } }" tag="div" class="stickr" v-for="(stickr, i) in myFavStickrs" :key="i" v-if="stickr">
+          <img :src="getStickrURL(stickr.coll, stickr.slug)" alt="collection image">
         </router-link>
       </div>
     </div>
@@ -81,7 +81,7 @@
       <div class="group other">
         <div class="group__collections">
           <!-- Collection -->
-          <div class="collection" v-for="(coll, i) in collections" :key="i">
+          <div class="collection" v-for="(coll, i) in collections" :key="i" v-if="coll">
             <router-link :to="{ name:'collection', params: { slug:coll.slug } }" tag="div" class="collection__details collection-tile tile">
               <div class="collection__details__image"><img :src="getCollectionURL(coll.slug)" alt="stickr"></div>
               <h3 class="collection__details__title" v-html="coll.name"></h3>
