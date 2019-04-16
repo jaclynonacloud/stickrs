@@ -10,13 +10,19 @@ const config = require('./db/config.js')
 
 // require('dotenv').load()
 
-app.use(cors())
+app.all('*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
     err => { console.log('Can not connect to the database'+ err)}
-);
+)
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
