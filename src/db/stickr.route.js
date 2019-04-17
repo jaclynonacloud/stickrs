@@ -12,7 +12,7 @@ let Stickr = require('./stickr.model')
 /* **************************************** */
 //ALL
 router.route('/').get((req, res) => {
-    Stickr.find((err, data) => {
+    Stickr.find({}, (err, data) => {
         if(err) res.json(err)
         else res.json(data)
     })

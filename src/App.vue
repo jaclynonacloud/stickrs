@@ -20,6 +20,7 @@ export default {
   },
   created() {
     store.dispatch('load')
+    console.log("API", process.env.VUE_APP_API_URL)
   }
 }
 </script>

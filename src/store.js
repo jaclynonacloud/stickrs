@@ -10,6 +10,7 @@ Vue.use(VueAxios, axios);
 
 // const URL = `${process.env.VUE_API_URL}:${process.env.PORT}/api` || "http://localhost:4000/api"
 const URL = process.env.VUE_APP_API_URL || "http://localhost:4000/api"
+// const URL = "http://localhost:4000/api"
 
 export default new Vuex.Store({
   state: {
@@ -142,12 +143,12 @@ export default new Vuex.Store({
     load({ commit }) {
       return new Promise(async(res) => {
         //load the stickrs
+        console.log("URL", URL)
         const stickrs = await axios.get(`${URL}/stickrs`)
         //load the collections
         const collections = await axios.get(`${URL}/collections`)
         //load the users
         const users = await axios.get(`${URL}/users`)
-
         
         commit('init', { stickrs:stickrs.data, collections:collections.data, users:users.data })
 
